@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { auth } from '../firebase';
+import './signin.css';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
@@ -21,25 +22,32 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h2>Sign In</h2>
-      {errorMessage && <p>{errorMessage}</p>}
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-      />
-      <button onClick={handleSignIn}>Sign In</button>
-      <p>
-        Don't have an account? <Link to="/signup">Sign Up</Link>
-      </p>
+    <div className='signin-container'>
+    <div className='signin-content'>
+    <div className='signin-header'>
+    <img src='https://discord.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png' alt='Discord Logo' className='signin-logo' />
+    <h2> Sign In </h2>
+    </div>
+    <div className='signin-form'>
+    <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+          />
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <button onClick={handleSignIn}>Sign In</button>
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          <p>
+            Don't have an account? <Link to="/signup">Sign Up</Link>
+          </p>
+    </div>
+    </div>
     </div>
   );
 };
