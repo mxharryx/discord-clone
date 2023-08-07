@@ -1,0 +1,86 @@
+/* ChatRoom.css */
+.chatroom-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #36393f;
+    color: #fff;
+  }
+  
+  .chatroom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background-color: #202225;
+  }
+  
+  h2 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  
+  .signout-button {
+    background-color: #7289da;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .signout-button:hover {
+    background-color: #677bc4;
+  }
+  
+  .chatroom-messages {
+    flex-grow: 1;
+    padding: 16px;
+    overflow-y: scroll;
+  }
+  
+  .chatroom-message {
+    display: flex;
+    margin-bottom: 12px;
+  }
+  
+  .message-user {
+    color: #7289da;
+    font-weight: bold;
+    margin-right: 8px;
+  }
+  
+  .message-content {
+    flex-grow: 1;
+  }
+  
+  .chatroom-input {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    background-color: #202225;
+  }
+  
+  input {
+    flex-grow: 1;
+    padding: 10px;
+    margin-right: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #36393f;
+    color: #fff;
+  }
+  
+  .send-button {
+    background-color: #7289da;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .send-button:hover {
+    background-color: #677bc4;
+  }
+  

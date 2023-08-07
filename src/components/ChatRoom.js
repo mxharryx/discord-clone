@@ -45,26 +45,29 @@ const ChatRoom = () => {
     }
 
     return (
-        <div>
+        <div className="chatroom-container">
+        <div className="chatroom-header">
         <h2>Welcome to the chat room!</h2>
-        <div>
-        {messages.map((message)=>(
-            <div key={message.id}>
-            <p>{message.userId}: {message.message}</p>
+        <button className="signout-button" onClick={handleSignOut}> Sign Out </button>
+        </div>
+        <div className="chatroom-messages">
+        {messages.map((message) => (
+            <div key={message.id} className="chatroom-message">
+            <span className="message-user">{message.userId}:</span>
+            <span className="message-content">{message.message}</span>
             </div>
         ))}
         </div>
-        <div>
+        <div className="chatroom-input">
         <input
         type="text"
         value={message}
-        onChange={(e)=>setMessage(e.target.value)}
+        onChange={(e) => setMessage(e.target.value)}
         placeholder="Type your message here"
         />
-        <button onClick={handleSendMessage}>Send</button>
-        <button onClick={handleSignOut}>Sign Out</button>
+        <button className="send-button" onClick={handleSendMessage}> Send </button>
         </div>
-        </div>
+    </div>
     );
 };
 
