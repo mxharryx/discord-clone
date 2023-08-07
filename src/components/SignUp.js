@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { auth } from '../firebase';
+import './signup.css';
 
 const SignUp = () => {
     const [email, setEmail] = useState('');
@@ -19,27 +20,32 @@ const SignUp = () => {
 };
 
 return (
-    <div>
+    <div className="signup-container">
+    <div className="signup-content">
+    <div className="signup-header">
+    <img src="https://discord.com/assets/fc0b01fe10a0b8c602fb0106d8189d9b.png" alt="Discord Logo" className="signup-logo" />
     <h2>Sign Up</h2>
-    {errorMessage && <p>{errorMessage}</p>}
-    <form onSubmit={handleSignUp}>
+    </div>
+    <div className="signup-form">
     <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        />
-        <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        />
-        <button type="submit">Sign Up</button>
-        </form>
-        <p>
-        Already have an account? <Link to="/signin">Sign In</Link>
-        </p>
+    type="email"
+    value={email}
+    onChange={(e) => setEmail(e.target.value)}
+    placeholder="Email"
+    />
+    <input
+    type="password"
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    placeholder="Password"
+    />
+    <button onClick={handleSignUp}>Sign Up</button>
+    {errorMessage && <p className="error-message">{errorMessage}</p>}
+    <p>
+    Already have an account? <Link to="/signin">Sign In</Link>
+    </p>
+    </div>
+    </div>
     </div>
     );
 };
