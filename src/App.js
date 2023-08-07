@@ -1,3 +1,5 @@
+import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import logo from './logo.svg';
 import './App.css';
 
@@ -7,17 +9,21 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          Welcome to My Chat App!
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/signin">Sign In</Link>
+            </li>
+            <li>
+              <Link to="/signup">Sign Up</Link>
+            </li>
+            {/* Add more navigation links as needed */}
+          </ul>
+        </nav>
       </header>
+      {/* Add common footer or other components */}
     </div>
   );
 }

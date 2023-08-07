@@ -1,26 +1,24 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom'; // Import useHistory hook
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { auth } from '../firebase';
 
-const handleSignIn = async (email, password, setErrorMessage, history) => {
-    try {
-    await auth.signInWithEmailAndPassword(email, password);
-    // If successful, user redirected to chat room or any other page
-    history.push('/chatroom');
-} catch (error) {
-    // Handle sign-in errors
-    console.error('Error signing in:', error.message);
-    setErrorMessage('Invalid email and password');
-}
-};
-
 const SignIn = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [errorMessage, setErrorMessage] = useState(null);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
-  // Get the history object using useHistory hook
-  const history = useHistory();
+  const handleSignIn = async () => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    // If successful, user redirected to chat room or any other page
+    navigate('/chatroom');
+    } catch (error) {
+      // Handle sign-in errors
+      console.error('Error signing in:', error.message);
+      setErrorMessage('Invalid email and password');
+    }
+  };
 
   return (
     <div>
@@ -38,7 +36,10 @@ const SignIn = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Password"
       />
-      <button onClick={() => handleSignIn(email, password, setErrorMessage, history)}>Sign In</button>
+      <button onClick={handleSignIn}>Sign In</button>
+      <p>
+        Don't have an account? <Link to="/signup">Sign Up</Link>
+      </p>
     </div>
   );
 };

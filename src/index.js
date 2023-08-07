@@ -1,18 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-import { auth } from './firebase';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'; // Updated import with Routes and Navigate
 import './index.css';
 import App from './App';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import ChatRoom from './components/ChatRoom';
 import reportWebVitals from './reportWebVitals';
 
-ReactDOM.render(
+ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Router>
+      <Routes> {/* The Routes component wraps all your route configurations */}
+        <Route path="/" element={<App />} /> {/* The root path "/" will render the App component */}
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/chatroom" element={<ChatRoom />} />
+        <Route path="*" element={<Navigate to="/signin" />} /> {/* For any other unknown paths, redirect to the SignIn page */}
+      </Routes>
+    </Router>
+  </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

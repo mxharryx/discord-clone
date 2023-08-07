@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import {auth} from '../firebase';
 import { sendMessage, listenForMessages } from '../chatUtils';
 
@@ -7,7 +7,7 @@ const ChatRoom = () => {
     const [user, setUser] = useState(null);
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
-    const history = useHistory();
+    const history = useNavigate();
 
     useEffect(()=>{
         //check if user is signed in
@@ -22,7 +22,7 @@ const ChatRoom = () => {
     }, [history]);
 
     useEffect(()=> {
-        //listenm for messages
+        //listen for messages
         listenForMessages((messageData) => {
             setMessages((prevMessages) => [...prevMessages, messageData]);
         });
@@ -34,6 +34,15 @@ const ChatRoom = () => {
             setMessage('');
         }
     };
+
+    const handleSignOut = async() =>{
+        try{
+            await auth.signOut();
+            history('/signin');
+        }catch(error){
+            console.error('Error Signing out:', error.message);
+        }
+    }
 
     return (
         <div>
@@ -53,6 +62,7 @@ const ChatRoom = () => {
         placeholder="Type your message here"
         />
         <button onClick={handleSendMessage}>Send</button>
+        <button onClick={handleSignOut}>Sign Out</button>
         </div>
         </div>
     );
