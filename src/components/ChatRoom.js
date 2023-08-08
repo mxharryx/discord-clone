@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {auth} from '../firebase';
 import { sendMessage, listenForMessages } from '../chatUtils';
+import './chatroom.css'
 
 const ChatRoom = () => {
     const [user, setUser] = useState(null);
@@ -47,7 +48,7 @@ const ChatRoom = () => {
     return (
         <div className="chatroom-container">
         <div className="chatroom-header">
-        <h2>Welcome to the chat room!</h2>
+        <h2>Welcome to the chat room, {user && user.displayName}!</h2>
         <button className="signout-button" onClick={handleSignOut}> Sign Out </button>
         </div>
         <div className="chatroom-messages">
